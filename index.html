@@ -178,20 +178,20 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -222,6 +222,108 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/07/Linux%E9%80%9A%E8%BF%87ssh%E8%BF%9E%E6%8E%A5%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="LHW">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LHW's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/07/Linux%E9%80%9A%E8%BF%87ssh%E8%BF%9E%E6%8E%A5%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">Linux通过ssh连接云服务器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-07 19:55:36 / 修改时间：19:56:51" itemprop="dateCreated datePublished" datetime="2020-09-07T19:55:36+08:00">2020-09-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">云服务器</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Linux通过ssh连接云服务器"><a href="#Linux通过ssh连接云服务器" class="headerlink" title="Linux通过ssh连接云服务器"></a>Linux通过ssh连接云服务器</h1><h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><ol>
+<li><p>在root下新建一个<code>.ssh</code>文件，权限改为700（仅用户自身有权利操作）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir .ssh</span><br><span class="line">chmod 700 .ssh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入<code>.ssh</code>生成密钥对</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen –t rsa</span><br><span class="line">剩余操作是加密私钥文件的密码，可以空格跳过</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将公钥内容加入到<strong>authorized_keys</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys （双尖括号&gt;&gt;表示像向文件中追加）</span><br><span class="line">chmod 600 authorzied_keys</span><br></pre></td></tr></table></figure>
+
+<p>默认是有这个<strong>authorized_keys</strong>，没用新建这个文件就是</p>
+</li>
+<li><p>拷贝私钥到本机</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp 用户名@服务器ip:源文件路径 本机目标文件夹   </span><br><span class="line">scp work@192.168.0.10:&#x2F;home&#x2F;work&#x2F;source.txt &#x2F;home&#x2F;work&#x2F;   #把192.168.0.10机器上的source.txt文件拷贝到本地的&#x2F;home&#x2F;work目录下</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="本机"><a href="#本机" class="headerlink" title="本机"></a>本机</h3><ol>
+<li><p>新建<code>.ssh</code>，这个在~（也就是你的/home/用户名/）下就行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir .ssh</span><br><span class="line">chmod 700 .ssh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将私钥id_rsa拷贝到.ssh目录下，检查文件权限是否为600，如果不是，需要更改文件权限为600</p>
+</li>
+<li><p>在<code>.ssh</code>文件夹下建<code>config文件</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch config</span><br><span class="line">chmod 600 config</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>vim</code>编辑<code>config</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host xx.xx.xx.xx                &#x2F;&#x2F;设置别称，比如Tencent，下次直接ssh Tencent就行了</span><br><span class="line">    HostName xx.xx.xx.xx           &#x2F;&#x2F;设置服务器ip</span><br><span class="line">    Port 22                       &#x2F;&#x2F;设置端口</span><br><span class="line">    User root                    &#x2F;&#x2F;设置登录用户</span><br><span class="line">    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa  &#x2F;&#x2F;设置私钥路径</span><br></pre></td></tr></table></figure>
+
+<p>注意<code>Host</code>下面几行缩进</p>
+</li>
+<li><p><code>id_rsa</code>这个文件是可以照样在windows用的</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
