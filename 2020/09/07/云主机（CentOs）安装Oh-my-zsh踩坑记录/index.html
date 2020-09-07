@@ -22,29 +22,35 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="LHW&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="云主机（CentOs）安装Oh-my-zsh踩坑记录 首先确保你安装了git 一般wget都是安装了的，git并没有预先安装，所以你需要先yum install git. 但是你可能会遇见perl-TermReadKey-2.30-20.el7.x FAILED之类的，采用yum install git -y  可能会遇到no more mirror 这个时候先yum clean all,yum">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云主机（CentOs）安装Oh-my-zsh踩坑记录">
+<meta property="og:url" content="http://yoursite.com/2020/09/07/%E4%BA%91%E4%B8%BB%E6%9C%BA%EF%BC%88CentOs%EF%BC%89%E5%AE%89%E8%A3%85Oh-my-zsh%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="LHW&#39;s Blog">
+<meta property="og:description" content="云主机（CentOs）安装Oh-my-zsh踩坑记录 首先确保你安装了git 一般wget都是安装了的，git并没有预先安装，所以你需要先yum install git. 但是你可能会遇见perl-TermReadKey-2.30-20.el7.x FAILED之类的，采用yum install git -y  可能会遇到no more mirror 这个时候先yum clean all,yum">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-07T12:03:19.000Z">
+<meta property="article:modified_time" content="2020-09-07T12:03:56.140Z">
 <meta property="article:author" content="LHW">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="oh-my-zsh">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2020/09/07/%E4%BA%91%E4%B8%BB%E6%9C%BA%EF%BC%88CentOs%EF%BC%89%E5%AE%89%E8%A3%85Oh-my-zsh%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>LHW's Blog</title>
+  <title>云主机（CentOs）安装Oh-my-zsh踩坑记录 | LHW's Blog</title>
   
 
 
@@ -154,7 +160,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -166,6 +172,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%91%E4%B8%BB%E6%9C%BA%EF%BC%88CentOs%EF%BC%89%E5%AE%89%E8%A3%85Oh-my-zsh%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">云主机（CentOs）安装Oh-my-zsh踩坑记录</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -218,11 +225,12 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
       
 
       
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -241,10 +249,9 @@
     
     
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/07/%E4%BA%91%E4%B8%BB%E6%9C%BA%EF%BC%88CentOs%EF%BC%89%E5%AE%89%E8%A3%85Oh-my-zsh%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">云主机（CentOs）安装Oh-my-zsh踩坑记录</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          云主机（CentOs）安装Oh-my-zsh踩坑记录
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -275,7 +282,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="云主机（CentOs）安装Oh-my-zsh踩坑记录"><a href="#云主机（CentOs）安装Oh-my-zsh踩坑记录" class="headerlink" title="云主机（CentOs）安装Oh-my-zsh踩坑记录"></a>云主机（CentOs）安装Oh-my-zsh踩坑记录</h1><ol>
+        <h1 id="云主机（CentOs）安装Oh-my-zsh踩坑记录"><a href="#云主机（CentOs）安装Oh-my-zsh踩坑记录" class="headerlink" title="云主机（CentOs）安装Oh-my-zsh踩坑记录"></a>云主机（CentOs）安装Oh-my-zsh踩坑记录</h1><ol>
 <li><p>首先确保你安装了git</p>
 <p>一般wget都是安装了的，<strong>git并没有预先安装</strong>，所以你需要先<code>yum install git</code>.</p>
 <p>但是你可能会遇见<code>perl-TermReadKey-2.30-20.el7.x FAILED</code>之类的，采用<code>yum install git -y</code></p>
@@ -309,244 +316,34 @@
 </li>
 </ol>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/oh-my-zsh/" rel="tag"># oh-my-zsh</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/07/Linux%E9%80%9A%E8%BF%87ssh%E8%BF%9E%E6%8E%A5%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="prev" title="Linux通过ssh连接云服务器">
+                  <i class="fa fa-chevron-left"></i> Linux通过ssh连接云服务器
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/07/Linux%E9%80%9A%E8%BF%87ssh%E8%BF%9E%E6%8E%A5%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="LHW">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LHW's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/07/Linux%E9%80%9A%E8%BF%87ssh%E8%BF%9E%E6%8E%A5%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">Linux通过ssh连接云服务器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-09-07 19:55:36 / 修改时间：19:56:51" itemprop="dateCreated datePublished" datetime="2020-09-07T19:55:36+08:00">2020-09-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">云服务器</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Linux通过ssh连接云服务器"><a href="#Linux通过ssh连接云服务器" class="headerlink" title="Linux通过ssh连接云服务器"></a>Linux通过ssh连接云服务器</h1><h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><ol>
-<li><p>在root下新建一个<code>.ssh</code>文件，权限改为700（仅用户自身有权利操作）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir .ssh</span><br><span class="line">chmod 700 .ssh</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进入<code>.ssh</code>生成密钥对</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen –t rsa</span><br><span class="line">剩余操作是加密私钥文件的密码，可以空格跳过</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将公钥内容加入到<strong>authorized_keys</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys （双尖括号&gt;&gt;表示像向文件中追加）</span><br><span class="line">chmod 600 authorzied_keys</span><br></pre></td></tr></table></figure>
-
-<p>默认是有这个<strong>authorized_keys</strong>，没用新建这个文件就是</p>
-</li>
-<li><p>拷贝私钥到本机</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp 用户名@服务器ip:源文件路径 本机目标文件夹   </span><br><span class="line">scp work@192.168.0.10:&#x2F;home&#x2F;work&#x2F;source.txt &#x2F;home&#x2F;work&#x2F;   #把192.168.0.10机器上的source.txt文件拷贝到本地的&#x2F;home&#x2F;work目录下</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="本机"><a href="#本机" class="headerlink" title="本机"></a>本机</h3><ol>
-<li><p>新建<code>.ssh</code>，这个在~（也就是你的/home/用户名/）下就行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir .ssh</span><br><span class="line">chmod 700 .ssh</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将私钥id_rsa拷贝到.ssh目录下，检查文件权限是否为600，如果不是，需要更改文件权限为600</p>
-</li>
-<li><p>在<code>.ssh</code>文件夹下建<code>config文件</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch config</span><br><span class="line">chmod 600 config</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>vim</code>编辑<code>config</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host xx.xx.xx.xx                &#x2F;&#x2F;设置别称，比如Tencent，下次直接ssh Tencent就行了</span><br><span class="line">    HostName xx.xx.xx.xx           &#x2F;&#x2F;设置服务器ip</span><br><span class="line">    Port 22                       &#x2F;&#x2F;设置端口</span><br><span class="line">    User root                    &#x2F;&#x2F;设置登录用户</span><br><span class="line">    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa  &#x2F;&#x2F;设置私钥路径</span><br></pre></td></tr></table></figure>
-
-<p>注意<code>Host</code>下面几行缩进</p>
-</li>
-<li><p><code>id_rsa</code>这个文件是可以照样在windows用的</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%9F%A5%E8%AF%86%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="LHW">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LHW's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%9F%A5%E8%AF%86%E7%82%B9/" class="post-title-link" itemprop="url">机器学习第一章知识点</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-09 21:20:48 / 修改时间：22:09:08" itemprop="dateCreated datePublished" datetime="2020-08-09T21:20:48+08:00">2020-08-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="机器学习第一章"><a href="#机器学习第一章" class="headerlink" title="机器学习第一章"></a>机器学习第一章</h1><h4 id="1-2"><a href="#1-2" class="headerlink" title="1.2"></a>1.2</h4><p>数据集(data set)：数据的集合</p>
-<p>示例(instance)或者样本(sample)：数据中每条记录指定的对象</p>
-<p>属性(attribute)或特征(feature)：对象的特征</p>
-<p>属性值(attribute value)：属性的值</p>
-<p>属性空间(attribute space)或样本空间(sample space)或输入空间：属性张成的空间</p>
-<p>特征向量(feature vector)：如果把属性转换成坐标系，那么每个示例都可以找到对应的点，因此把一个示例也作为一个特征向量</p>
-<blockquote>
-<p>以一个西瓜实例来说</p>
-<p>一个示例是（色泽=乌黑；根蒂=蜷缩；敲声=浊响）</p>
-<p>属性是色泽、根蒂、敲声</p>
-<p>属性值是乌黑、蜷缩、浊响</p>
-</blockquote>
-<p>标记(label)：经过预测得到示例结果的信息</p>
-<p>样例(example)：拥有了标记信息的示例一般用$(\textbf{x}_i,y_i)$表示第i个示例</p>
-<p>标记空间或输出空间：标记的集合</p>
-<p>聚类(clustering)：将训练集中的示例分组，分成的每一个组称为簇(cluster)</p>
-<p><strong>监督学习</strong>：根据已经建立的模型，将输入映射到输出，是可以通过通过<strong>学习器（即模型）</strong>预判结果</p>
-<p><strong>无监督学习</strong>：输入时无标记的，没有确定的结果，力求的组的内部差距min，组间的差距max</p>
-<p>泛化能力：学习模型适用于新样本的能力</p>
-<hr>
-<h4 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h4><ol>
-<li><p>归纳(induction)与演绎(deduction)</p>
-<ul>
-<li>归纳：从特殊到一般的泛化(generalization)过程，即从事实归结出一般性规律</li>
-<li>演绎：从一般到特殊的特化(specialization)过程，即从基础原理推演出具体状况</li>
-</ul>
-</li>
-<li><p>假设空间</p>
-<p>很简单就是把假设罗列出来</p>
-<p>比如罗列西瓜的假设空间</p>
-<p><img src="https://wx2.sbimg.cn/2020/08/09/oqViV.png" alt="image-20200730233637314"></p>
-</li>
-<li><p>版本空间</p>
-</li>
-</ol>
-<p><img src="https://wx1.sbimg.cn/2020/08/09/oqT2Y.png" alt="image-20200730233522946"></p>
-<p style="text-align:center">西瓜数据集</p>
-
-<p><img src="https://wx2.sbimg.cn/2020/08/09/oqOl4.png" alt="image-20200730233710786"></p>
-<p>上图是好瓜的版本空间</p>
-<p>版本空间(version space)：可能有多个假设与训练集一致，即存在着一个与训练集一致的“假设集合”</p>
-<hr>
-<h4 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h4><ol>
-<li><p>归纳偏好(inductive bias)：学习过程中对某种类型假设的偏好，也可简称为“偏好”</p>
-</li>
-<li><p>“没有免费午餐定理”：在所有问题出现机会相同、或所有问题同等重要的情况下误差和算法无关，<strong>但是我们知道这是理想情况，显示基本上不可能。这脱离了现实，脱离具体问题，空泛谈论“什么学习算法更好”毫无意义</strong></p>
-</li>
-</ol>
-<blockquote>
-<p>关于这个定理的论证：</p>
-<p><img src="https://wx2.sbimg.cn/2020/08/09/oqNVm.png" alt="image-20200730234613709"></p>
-<p><img src="https://wx1.sbimg.cn/2020/08/09/oqrtd.png" alt="image-20200730234652155"></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
