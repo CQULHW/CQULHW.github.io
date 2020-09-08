@@ -30,7 +30,7 @@
 <meta property="og:description" content="Linux通过ssh连接云服务器服务器端 在root下新建一个.ssh文件，权限改为700（仅用户自身有权利操作） 12mkdir .sshchmod 700 .ssh  进入.ssh生成密钥对 12ssh-keygen –t rsa剩余操作是加密私钥文件的密码，可以空格跳过  将公钥内容加入到authorized_keys 12cat id_rsa.pub &gt;&gt; authorized">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-07T11:55:36.000Z">
-<meta property="article:modified_time" content="2020-09-08T14:52:36.529Z">
+<meta property="article:modified_time" content="2020-09-08T15:31:00.371Z">
 <meta property="article:author" content="LHW">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="SSH">
@@ -267,7 +267,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-08 22:52:36" itemprop="dateModified" datetime="2020-09-08T22:52:36+08:00">2020-09-08</time>
+                <time title="修改时间：2020-09-08 23:31:00" itemprop="dateModified" datetime="2020-09-08T23:31:00+08:00">2020-09-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -317,7 +317,7 @@
 <li><p><code>vim</code>编辑<code>config</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host xx.xx.xx.xx                &#x2F;&#x2F;设置别称，比如Tencent，下次直接ssh Tencent就行了</span><br><span class="line">    HostName xx.xx.xx.xx           &#x2F;&#x2F;设置服务器ip</span><br><span class="line">    Port 22                       &#x2F;&#x2F;设置端口</span><br><span class="line">    User root                    &#x2F;&#x2F;设置登录用户</span><br><span class="line">    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa  &#x2F;&#x2F;设置私钥路径</span><br></pre></td></tr></table></figure>
 
-<p>注意<code>Host</code>下面几行缩进</p>
+<p>注意<code>Host</code>下面几行缩进<br><strong>记得删除公钥，或者备份公钥</strong>，可以删除，反正私钥是可以推算出公钥的，但是还是可以备份一个。</p>
 </li>
 <li><p><code>id_rsa</code>这个文件是可以照样在windows用的</p>
 <ul>
