@@ -30,7 +30,7 @@
 <meta property="og:description" content="Linux通过ssh连接云服务器服务器端 在root下新建一个.ssh文件，权限改为700（仅用户自身有权利操作） 12mkdir .sshchmod 700 .ssh  进入.ssh生成密钥对 12ssh-keygen –t rsa剩余操作是加密私钥文件的密码，可以空格跳过  将公钥内容加入到authorized_keys 12cat id_rsa.pub &gt;&gt; authorized">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-07T11:55:36.000Z">
-<meta property="article:modified_time" content="2020-09-07T11:56:51.126Z">
+<meta property="article:modified_time" content="2020-09-08T14:49:55.505Z">
 <meta property="article:author" content="LHW">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="SSH">
@@ -259,10 +259,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-09-07 19:55:36 / 修改时间：19:56:51" itemprop="dateCreated datePublished" datetime="2020-09-07T19:55:36+08:00">2020-09-07</time>
+              <time title="创建时间：2020-09-07 19:55:36" itemprop="dateCreated datePublished" datetime="2020-09-07T19:55:36+08:00">2020-09-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 22:49:55" itemprop="dateModified" datetime="2020-09-08T22:49:55+08:00">2020-09-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -314,6 +320,12 @@
 <p>注意<code>Host</code>下面几行缩进</p>
 </li>
 <li><p><code>id_rsa</code>这个文件是可以照样在windows用的</p>
+<ul>
+<li>先通过xftp之类的软件找到私钥即<code>id_rsa</code>，将其复制进<code>C:\\Windows\\用户\\.ssh</code>文件，<br>这个文件你可以改成其它名字比如<code>id_rsa.gitee</code>，本质上就是一个文本文件</li>
+<li>修改这个文件下的config文件，<strong>文件内容跟上面一致</strong>，特别是<code>IdentityFile</code>这，<code>~</code>等效于<code>C:\\Windows\\用户</code>，可以不用管，只要你私钥名字写对就行。这样的话你用VScode就能登上去了,当然前提是你下载了对应的插件</li>
+<li>然后再Xshell里面找到<code>文件-&gt;当前会话属性-&gt;用户身份验证</code>，选择<code>PublicKey</code>,导入你的私钥，并选择它然后确定，下面的密码就是之前说的加密它的密码，因为上面我并没设置密码，所以直接为空就行。</li>
+<li>Xshell输入<code>sudo vim /etc/ssh/sshd_config</code>，将<code>PubkeyAuthentication yes</code>改为<code>no</code>,这样你的服务器安全性就得到提升，只能通过密钥连接</li>
+</ul>
 </li>
 </ol>
 
