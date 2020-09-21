@@ -22,22 +22,21 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
   </script>
 
-  <meta name="description" content="1.VS上写x86环境设置；2.列表文件的设置；3.源文件下多个asm文件如何指定某个文件运行">
+  <meta name="description" content="如题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VisualStudio写x86">
-<meta property="og:url" content="http://yoursite.com/2020/09/13/VisualStudio%E5%86%99x86/index.html">
+<meta property="og:title" content="1.操作系统的概念功能和目标">
+<meta property="og:url" content="http://yoursite.com/2020/09/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8A%9F%E8%83%BD%E5%92%8C%E7%9B%AE%E6%A0%87/index.html">
 <meta property="og:site_name" content="LHW&#39;s Blog">
-<meta property="og:description" content="1.VS上写x86环境设置；2.列表文件的设置；3.源文件下多个asm文件如何指定某个文件运行">
+<meta property="og:description" content="如题">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-13T07:45:04.000Z">
-<meta property="article:modified_time" content="2020-09-13T08:42:05.533Z">
+<meta property="article:published_time" content="2020-09-21T01:15:24.000Z">
+<meta property="article:modified_time" content="2020-09-21T01:16:40.031Z">
 <meta property="article:author" content="LHW">
-<meta property="article:tag" content="x86">
-<meta property="article:tag" content="Visual Studio">
+<meta property="article:tag" content="王道考研">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://yoursite.com/2020/09/13/VisualStudio%E5%86%99x86/">
+<link rel="canonical" href="http://yoursite.com/2020/09/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8A%9F%E8%83%BD%E5%92%8C%E7%9B%AE%E6%A0%87/">
 
 
 <script class="page-configurations">
@@ -50,7 +49,7 @@
   };
 </script>
 
-  <title>VisualStudio写x86 | LHW's Blog</title>
+  <title>1.操作系统的概念功能和目标 | LHW's Blog</title>
   
 
 
@@ -172,7 +171,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VisualStudio%E5%86%99x86"><span class="nav-number">1.</span> <span class="nav-text">VisualStudio写x86</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1.环境搭建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%94%9F%E6%88%90list%E6%96%87%E4%BB%B6"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2.生成list文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%BA%90%E6%96%87%E4%BB%B6%E4%B8%8B%E5%A4%9A%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A6%82%E4%BD%95%E6%8C%87%E5%AE%9A%E6%9F%90%E4%B8%AA%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3.源文件下多个文件如何指定某个文件运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%86%9964%E4%BD%8D%E7%9A%84"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4.写64位的</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8A%9F%E8%83%BD%E5%92%8C%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">1.操作系统的概念功能和目标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A6%82%E5%BF%B5"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1.概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8A%9F%E8%83%BD%E5%92%8C%E7%9B%AE%E6%A0%87"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2.功能和目标</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E7%9A%84%E7%AE%A1%E7%90%86%E8%80%85"><span class="nav-number">1.0.0.2.1.</span> <span class="nav-text">2.1系统资源的管理者</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2%E7%B3%BB%E7%BB%9F%E5%92%8C%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.0.0.2.2.</span> <span class="nav-text">2.2系统和计算机硬件之间的接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3%E4%BD%9C%E4%B8%BA%E6%9C%80%E6%8E%A5%E8%BF%91%E7%A1%AC%E4%BB%B6%E7%9A%84%E5%B1%82%E6%AC%A1"><span class="nav-number">1.0.0.2.3.</span> <span class="nav-text">2.3作为最接近硬件的层次</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -234,7 +233,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/13/VisualStudio%E5%86%99x86/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8A%9F%E8%83%BD%E5%92%8C%E7%9B%AE%E6%A0%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -250,7 +249,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          VisualStudio写x86
+          1.操作系统的概念功能和目标
         </h1>
 
         <div class="post-meta">
@@ -261,7 +260,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-09-13 15:45:04 / 修改时间：16:42:05" itemprop="dateCreated datePublished" datetime="2020-09-13T15:45:04+08:00">2020-09-13</time>
+              <time title="创建时间：2020-09-21 09:15:24 / 修改时间：09:16:40" itemprop="dateCreated datePublished" datetime="2020-09-21T09:15:24+08:00">2020-09-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -269,12 +268,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%80%86%E5%90%91/" itemprop="url" rel="index"><span itemprop="name">软件逆向</span></a>
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
                 </span>
             </span>
 
           
-            <div class="post-description">1.VS上写x86环境设置；2.列表文件的设置；3.源文件下多个asm文件如何指定某个文件运行</div>
+            <div class="post-description">如题</div>
 
         </div>
       </header>
@@ -283,28 +282,77 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="VisualStudio写x86"><a href="#VisualStudio写x86" class="headerlink" title="VisualStudio写x86"></a>VisualStudio写x86</h1><h4 id="1-环境搭建"><a href="#1-环境搭建" class="headerlink" title="1.环境搭建"></a>1.环境搭建</h4><ul>
-<li>首先创建一个空项目</li>
-<li>然后在源文件下创建<code>cpp</code>文件,这个时候命名可以把后缀改为<code>asm</code></li>
-<li>对工程进行配置<code>工程属性-&gt;链接器-&gt;入口点</code>写下<code>main</code>，这个意思是这个工程从<code>main</code>开始进入。这个属性可以帮助你后面选择哪一个文件进行调试而不用为了写一个文件又新建一个工程</li>
-<li>右键项目，选择<code>生成依赖项-&gt;生成自定义</code>，然后选择<code>masm</code></li>
-<li>然后设置你写的那个文件，右键属性，<code>常规-&gt;项类型</code>选择<code>Microsoft Macro Assembler</code></li>
-<li>上方菜单栏debug旁边选择<code>x86</code></li>
+        <h1 id="1-操作系统的概念功能和目标"><a href="#1-操作系统的概念功能和目标" class="headerlink" title="1.操作系统的概念功能和目标"></a>1.操作系统的概念功能和目标</h1><h4 id="1-概念"><a href="#1-概念" class="headerlink" title="1.概念"></a>1.概念</h4><p><strong>操作系统(Operating System)：</strong>控制和管理整个计算机体系的硬件和软件资源，并合理地组织调度计算机的工作和资源的分配，以提供给用户和其他软件方便的接口和环境(从下往上看)，它是计算机系统中最基本的<strong>系统软件</strong>(从上往下看)</p>
+<p>注意：操作系统和用户是可以直接接触的，不仅仅是只能通过应用程序和用户接触</p>
+<h4 id="2-功能和目标"><a href="#2-功能和目标" class="headerlink" title="2.功能和目标"></a>2.功能和目标</h4><h5 id="2-1系统资源的管理者"><a href="#2-1系统资源的管理者" class="headerlink" title="2.1系统资源的管理者"></a>2.1系统资源的管理者</h5><ul>
+<li><p>功能</p>
+<blockquote>
+<p>以打开QQ为例子</p>
+<p>打开QQ的步骤</p>
+<ol>
+<li>文件夹中找到QQ的位置，如：D:/Tencent/QQ/Bin</li>
+<li>双击打开QQ.exe</li>
+<li>QQ程序正常运行</li>
+<li>开始和朋友聊天、视频等</li>
+</ol>
+</blockquote>
+<ul>
+<li>处理机(CPU)管理：步骤3，QQ的运行需要CPU的资源分配</li>
+<li>存储器管理：管理内存，如步骤2，步骤2需要把QQ内容放入内存之中</li>
+<li>文件管理：管理文件，如上面步骤1</li>
+<li>设备管理：步骤4，视频聊天需要摄像头，操作系统将这个设备的使用权交给这个进程</li>
 </ul>
-<p>看其他教程还要其它设置，但其实都是默认设置，而且好像无关紧要可以不用在意。至此你的VS便可以写x86汇编。</p>
-<p><strong>建议安装AsmDude</strong>,又汇编代码提示和高亮</p>
-<h4 id="2-生成list文件"><a href="#2-生成list文件" class="headerlink" title="2.生成list文件"></a>2.生成list文件</h4><p><code>右键工程属性-&gt;Microsoft Macro Assembler</code></p>
-<p><code>Generate Preprocessed Source listing</code>选择<code>是</code></p>
-<p><code>List All Avaliable Information</code>选择<code>是</code></p>
-<p><code>Assembled Code Listing File </code>填<code>$(ProjectName).lst</code></p>
-<p>生成解决方案后再调试就可以在项目的文件夹里面找到list文件，一般是在<code>项目名\\项目名\\项目名.lst</code></p>
-<p><strong>但是我自己试过后续再改动调试文件会出问题，建议就不开这个，需要的时候再开。这个就是把你的代码翻译成对应的数字形式。</strong></p>
-<h4 id="3-源文件下多个文件如何指定某个文件运行"><a href="#3-源文件下多个文件如何指定某个文件运行" class="headerlink" title="3.源文件下多个文件如何指定某个文件运行"></a>3.源文件下多个文件如何指定某个文件运行</h4><p>很简单就上面部分说的，你的入口是main，要么你改变你的如果为其它的，然后对应asm文件以你定义的那个标识开始</p>
-<p>比如定义start为入口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">;AddTwo.asm - 两个32位整数相加</span><br><span class="line"></span><br><span class="line">.386</span><br><span class="line">.model flat,stdcall</span><br><span class="line">.stack 4096</span><br><span class="line">ExitProcess PROTO, dwExitCode:DWORD</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">sum DWORD 0</span><br><span class="line">.code</span><br><span class="line">start PROC</span><br><span class="line">    mov eax,5;数字5送入eax寄存器</span><br><span class="line">    add eax,6;eax寄存器加6</span><br><span class="line">    mov sum,eax</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    INVOKE ExitProcess,0</span><br><span class="line">start ENDP</span><br><span class="line">END start</span><br></pre></td></tr></table></figure>
-
-<p>当然也可以直接把其它文件的入口换成start，只留要执行的文件入口为main</p>
-<h4 id="4-写64位的"><a href="#4-写64位的" class="headerlink" title="4.写64位的"></a>4.写64位的</h4><p>基本上都一样，就是在设置入口为main的时候把上面的平台换成<code>x64</code>，同时菜单栏上debug旁边换成<code>x64</code></p>
+</li>
+<li><p>目标</p>
+<ul>
+<li>安全、高效</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-2系统和计算机硬件之间的接口"><a href="#2-2系统和计算机硬件之间的接口" class="headerlink" title="2.2系统和计算机硬件之间的接口"></a>2.2系统和计算机硬件之间的接口</h5><ul>
+<li><p>功能</p>
+<ul>
+<li><p><strong>命令接口</strong>：允许用户<strong>直接使用</strong></p>
+<ul>
+<li><p>联机命令接口：<strong>用户说一句，系统做一句</strong></p>
+<p>如cmd</p>
+</li>
+<li><p>脱机命令接口：<strong>用户说一堆，系统做一堆</strong></p>
+<p>如以.bat为后缀的文件，它是由一堆命令组成</p>
+</li>
+</ul>
+</li>
+<li><p><strong>程序接口</strong>：允许用户通过程序<strong>间接使用</strong></p>
+<p>​        如程序员在程序中调用user32.dll(该调用过程为系统调用)，即可实现创建窗口等功能，只能通过用户程序间接使用</p>
+<p>​        <strong>程序接口=系统调用=系统调用命令=广义指令</strong></p>
+</li>
+<li><p>GUI(现代操作系统中最流行的图形用户接口)</p>
+</li>
+</ul>
+</li>
+<li><p>目标</p>
+<ul>
+<li>方便用户使用</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-3作为最接近硬件的层次"><a href="#2-3作为最接近硬件的层次" class="headerlink" title="2.3作为最接近硬件的层次"></a>2.3作为最接近硬件的层次</h5><ul>
+<li>功能和目标<ul>
+<li>对硬件机器的扩展</li>
+</ul>
+</li>
+</ul>
+<p>通常把覆盖了软件的机器称为<strong>扩充机器</strong>，又称之为<strong>虚拟机</strong></p>
+<ul>
+<li><p>通俗理解</p>
+<blockquote>
+<p>类比</p>
+<p>硬件：锤子、锯子、木头、钉子……</p>
+<p>操作系统：优秀的工匠</p>
+<p>操作系统对硬件的拓展：通过优秀的工匠，这些简单的原料可以组成房子、帆船、匹诺曹，普通用户直接使用这些东西，而不需要关心他们是怎么组织起来的</p>
+</blockquote>
+</li>
+</ul>
 
     </div>
 
@@ -314,21 +362,20 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/x86/" rel="tag"># x86</a>
-              <a href="/tags/Visual-Studio/" rel="tag"># Visual Studio</a>
+              <a href="/tags/%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/" rel="tag"># 王道考研</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/09/07/%E4%BA%91%E4%B8%BB%E6%9C%BA%EF%BC%88CentOs%EF%BC%89%E5%AE%89%E8%A3%85Oh-my-zsh%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" rel="prev" title="云主机（CentOs）安装Oh-my-zsh踩坑记录">
-                  <i class="fa fa-chevron-left"></i> 云主机（CentOs）安装Oh-my-zsh踩坑记录
+                <a href="/2020/09/13/VisualStudio%E5%86%99x86/" rel="prev" title="VisualStudio写x86">
+                  <i class="fa fa-chevron-left"></i> VisualStudio写x86
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/09/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8A%9F%E8%83%BD%E5%92%8C%E7%9B%AE%E6%A0%87/" rel="next" title="1.操作系统的概念功能和目标">
-                  1.操作系统的概念功能和目标 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/09/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9B%9B%E4%B8%AA%E7%89%B9%E5%BE%81/" rel="next" title="操作系统的四个特征">
+                  操作系统的四个特征 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
