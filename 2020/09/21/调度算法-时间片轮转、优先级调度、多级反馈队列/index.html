@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
+  </script>
+
+  <meta name="description" content="如题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="16.调度算法---时间片轮转、优先级调度、多级反馈队列">
+<meta property="og:url" content="http://yoursite.com/2020/09/21/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95-%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E3%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%E3%80%81%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97/index.html">
+<meta property="og:site_name" content="LHW&#39;s Blog">
+<meta property="og:description" content="如题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_16_1.png">
+<meta property="og:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_16_2.png">
+<meta property="og:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_16_3.png">
+<meta property="og:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_16_4.png">
+<meta property="article:published_time" content="2020-09-21T01:41:27.000Z">
+<meta property="article:modified_time" content="2020-09-21T01:41:51.640Z">
+<meta property="article:author" content="LHW">
+<meta property="article:tag" content="王道考研">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_16_1.png">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/09/21/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95-%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E3%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%E3%80%81%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>16.调度算法---时间片轮转、优先级调度、多级反馈队列 | LHW's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">LHW's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#16-%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E2%80%94%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E3%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%E3%80%81%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">16.调度算法—时间片轮转、优先级调度、多级反馈队列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1.时间片轮转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2.优先级调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3.多级反馈队列</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">LHW</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95-%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E3%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%E3%80%81%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="LHW">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LHW's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          16.调度算法---时间片轮转、优先级调度、多级反馈队列
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-21 09:41:27 / 修改时间：09:41:51" itemprop="dateCreated datePublished" datetime="2020-09-21T09:41:27+08:00">2020-09-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">如题</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="16-调度算法—时间片轮转、优先级调度、多级反馈队列"><a href="#16-调度算法—时间片轮转、优先级调度、多级反馈队列" class="headerlink" title="16.调度算法—时间片轮转、优先级调度、多级反馈队列"></a>16.调度算法—时间片轮转、优先级调度、多级反馈队列</h1><h4 id="1-时间片轮转"><a href="#1-时间片轮转" class="headerlink" title="1.时间片轮转"></a>1.时间片轮转</h4><img src="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_16_1.png" alt="image-20200821112458088" style="zoom: 50%;" />
+
+<ul>
+<li><p>如果<strong>时间片太大</strong>，每个进程就可以在一个时间片内完成，则时间片轮转调度算法<strong>退化为先来先服务</strong>调度算法，并且<strong>会增大进程响应时间。因此时间片不能太大</strong>、</p>
+</li>
+<li><p>同时<strong>时间片太小</strong>，则进程会频繁切换，切换是有时间代价的（保存、恢复运行环境），所以<strong>时间片也不能太小</strong>。</p>
+</li>
+</ul>
+<h4 id="2-优先级调度"><a href="#2-优先级调度" class="headerlink" title="2.优先级调度"></a>2.优先级调度</h4><ul>
+<li>非抢占式</li>
+</ul>
+<img src="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_16_2.png" alt="image-20200821151442385" style="zoom:50%;" />
+
+<ul>
+<li>抢占式</li>
+</ul>
+<img src="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_16_3.png" alt="image-20200821151624399" style="zoom:50%;" />
+
+<p>优先级可以根据是否可以动态改变分为<strong>静态优先级</strong>、<strong>动态优先级</strong>，动态优先级会给一个初始值，后面根据情况变化</p>
+<p>那么<strong>如何合理设置各类进程的优先级呢</strong>？：</p>
+<ul>
+<li>通常系统进程优先级<strong>高于</strong>用户进程</li>
+<li>前台进程优先级<strong>高于</strong>后台进程</li>
+<li>操作系统更偏好<strong>I/O型进程</strong>（或称I/O繁忙型进程）(解释：CPU和I/O是可并行的，如果优先工作则可以让I/O设备更早投入工作和CPU一起并行运行)。</li>
+</ul>
+<p>那么<strong>采用动态优先，什么时候应该调整呢</strong>？：</p>
+<ul>
+<li>如果进程在就绪队列等待了很长时间，可以适当提升其优先级</li>
+<li>如果某进程占用处理机运行了很长时间，则可以适当降低其优先级</li>
+</ul>
+<h4 id="3-多级反馈队列"><a href="#3-多级反馈队列" class="headerlink" title="3.多级反馈队列"></a>3.多级反馈队列</h4><img src="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_16_4.png" alt="image-20200821154356211" style="zoom: 100%;" />
+
+<blockquote>
+<ol>
+<li>P1进入一级队列，进入CPU使用1个时间片，进入下一级队尾</li>
+<li>P2进入了一级队列，由于第一级队列还有进程，不能运行第二级，所以P2运行一个时间片，进入第二级队尾</li>
+<li>第一级没有进程后，P1开始进入CPU运行2个时间片，进入第三级</li>
+<li>P2进入CPU运行一个时间片后,进程P3进入第一级，P3开始运行一个时间片，移出内存</li>
+<li>P2重新运行2个时间片结束，移除内存</li>
+<li>P1运行4个内存，返回队尾</li>
+<li>P1再运行完，移出内存</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>角度</th>
+<th>时间片轮转</th>
+<th>优先级调度</th>
+<th>多级反馈队列</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>算法思想</td>
+<td>公平地、轮流地为各个进程服务，让每个进程在一定时间间隔内都可以得到响应。</td>
+<td>随着计算机的发展，特别是实时操作系统的出现，越来越多的的应用场景需要根据任务的紧急程度来决定处理顺序。</td>
+<td>对其它调度算法的折中权衡</td>
+</tr>
+<tr>
+<td>算法规则</td>
+<td>按照各进程到达就绪队列的顺序，轮流让各个进程执行一个<strong>时间片</strong>（如100ms）.若进程未在一个时间片内执行完，则剥夺处理机，将进程重新放进就绪队列尾重新排队。</td>
+<td>每个作业/进程有各自的优先级，调度时选择优先级最高的作业/进程。</td>
+<td>1. 设置多级就绪队列，各级队列优先级从高到低，时间片从小到大<br />2. 新进程到达时先进入第1级队列。按FCFS原则排队等待被分配时间片，若用完时间片进程还未结束，则进程进入下一级队列尾，如果此时已经是在最下级队列，则重新放回该队列队尾。<br />3.<strong>只有第K级队列为空时，才会为k+1级队头的进程分配时间片</strong>。</td>
+</tr>
+<tr>
+<td>用于作业调度/进程调度</td>
+<td>用于进程调度（只有作业放入内存建立了相应的进程后，才能被分配处理机时间片）</td>
+<td>既可以用于作业调度，也可以用于进程调度。甚至，还会用于之后会学习的I/O调度。</td>
+<td>用于进程调度</td>
+</tr>
+<tr>
+<td>是否可抢占</td>
+<td>若进程未能在时间片内运行完，将被强行剥夺处理机使用权，因此时间片轮转调度算法属于<strong>抢占式</strong>的算法。由时钟装置发出的<strong>时钟中断</strong>来通知CPU时间片已到。</td>
+<td>抢占式、非抢占式都有</td>
+<td><strong>抢占式算法</strong>，若在K级队列的进程运行过程中，若更上级的队列（1~K-1级）中进入了一个新进程，则由于新进程处于优先级更高的队列中，因此新进程会抢占处理机，原来运行的进程<strong>放回K级队列队尾</strong>。</td>
+</tr>
+<tr>
+<td>优缺点</td>
+<td>优点：公平；响应快，适用于分时操作系统<br />缺点：由于高频率的进程切换，因此是有一定开销；不区分任务的紧急程度。</td>
+<td>优点：用优先级区分紧急程度、重要程度、适用于实时操作系统。可灵活地调整对各种作业/进程的偏好程度。<br />缺点：若源源不断地有高优先级进程到来，则可能导致饥饿。</td>
+<td>对各类型进程相对公平（FCFS的优点）；每个新到达的进程都可以很快就得到响应（RR的优点）；短进程只用较少的时间就可完成（SPF的优点）；不必实现估计进程的运行时间（避免用户作假）；<br />可灵活地调整对各类进程的偏好程度，比如CPU密集型进程、I/O密集型进程（拓展：可以将因I/O而阻塞的进程重新放回原队列，这样I/O型进程就可以保持较高优先级）</td>
+</tr>
+<tr>
+<td>是否会导致饥饿</td>
+<td>不会</td>
+<td>会</td>
+<td>会（源源不断的短进程进来，更低级的进程可能得不到服务）</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/" rel="tag"># 王道考研</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/21/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" rel="prev" title="调度算法">
+                  <i class="fa fa-chevron-left"></i> 调度算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/09/21/%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5%E3%80%81%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5/" rel="next" title="17.进程同步、进程互斥">
+                  17.进程同步、进程互斥 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LHW</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+      
+
+
+
+
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

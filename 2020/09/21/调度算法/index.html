@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
+  </script>
+
+  <meta name="description" content="如题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="调度算法">
+<meta property="og:url" content="http://yoursite.com/2020/09/21/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="LHW&#39;s Blog">
+<meta property="og:description" content="如题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_15_1.png">
+<meta property="og:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_15_2.png">
+<meta property="og:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_15_3.png">
+<meta property="og:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_15_4.png">
+<meta property="article:published_time" content="2020-09-21T01:40:01.000Z">
+<meta property="article:modified_time" content="2020-09-21T01:40:15.649Z">
+<meta property="article:author" content="LHW">
+<meta property="article:tag" content="王道考研">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_15_1.png">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/09/21/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>调度算法 | LHW's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">LHW's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#15-%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">15.调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%EF%BC%88FCFS%EF%BC%89"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1.先来先服务（FCFS）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%EF%BC%88SJF%EF%BC%89"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2.短作业优先（SJF）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%EF%BC%88HRRN%EF%BC%89"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3.高响应比优先（HRRN）</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">LHW</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="LHW">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LHW's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          调度算法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-21 09:40:01 / 修改时间：09:40:15" itemprop="dateCreated datePublished" datetime="2020-09-21T09:40:01+08:00">2020-09-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">如题</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="15-调度算法"><a href="#15-调度算法" class="headerlink" title="15.调度算法"></a>15.调度算法</h1><h4 id="1-先来先服务（FCFS）"><a href="#1-先来先服务（FCFS）" class="headerlink" title="1.先来先服务（FCFS）"></a>1.先来先服务（FCFS）</h4><img src="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_15_1.png" alt="image-20200819222222038" style="zoom:67%;" />
+
+<h4 id="2-短作业优先（SJF）"><a href="#2-短作业优先（SJF）" class="headerlink" title="2.短作业优先（SJF）"></a>2.短作业优先（SJF）</h4><ul>
+<li>非抢占式</li>
+</ul>
+<img src="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_15_2.png" alt="image-20200819223404137" style="zoom:60%;" />
+
+<ul>
+<li>抢占式</li>
+</ul>
+<p><img src="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_15_3.png" alt="image-20200819223840651"></p>
+<blockquote>
+<p>注意几个小细节：</p>
+<ol>
+<li><p>如果题目中未特别说明，所提到的“短作业/进程优先算法”默认是非抢占式的</p>
+</li>
+<li><p>很多书上都会说“SJF 调度算法的平均等待时间、平均周转时间最少” </p>
+</li>
+</ol>
+<p>严格来说，这个表述是错误的，不严谨的。之前的例子表明，最短剩余时间优先算法得到的平均等待时间、平均周转时间还要更少 </p>
+<p>应该加上一个条件“在<strong>所有进程同时可运行时</strong>，采用SJF调度算法的平均等待时间、平均周转时间最少”；或者说“在<strong>所有进程都几乎同时到达时</strong>，采用SJF调度算法的平均等待时间、平均周转时间最少”； </p>
+<p>如果不加上述前提条件，则应该说“<strong>抢占式的短作业/进程优先调度算法（最短剩余时间优先, SRNT算法）的平均等待时间、平均周转时间最少</strong>”</p>
+<ol start="3">
+<li><p>虽然严格来说，SJF的平均等待时间、平均周转时间并不一定最少，但相比于其他算法（如 FCFS），SJF依然可以获得较少的平均等待时间、平均周转时间</p>
+</li>
+<li><p>如果选择题中遇到“SJF 算法的平均等待时间、平均周转时间最少”的选项，那最好判断其他选项是不是有很明显的错误，如果没有更合适的选项，那也应该选择该选项</p>
+</li>
+</ol>
+</blockquote>
+<h4 id="3-高响应比优先（HRRN）"><a href="#3-高响应比优先（HRRN）" class="headerlink" title="3.高响应比优先（HRRN）"></a>3.高响应比优先（HRRN）</h4><img src="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_15_4.png" alt="image-20200819225546165" style="zoom:67%;" />
+
+<table>
+<thead>
+<tr>
+<th>角度</th>
+<th>先来先服务（FCFS）</th>
+<th>.短作业优先（SJF）</th>
+<th>高响应比优先（HRRN）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>算法思想</td>
+<td>主要从”公平“角度，先到先得</td>
+<td>追求最少的平均等待时间，最少的平均周转时间、最少的平均带权周转时间</td>
+<td>要综合考虑作业/进程的等待时间和要求服务的时间</td>
+</tr>
+<tr>
+<td>算法规则</td>
+<td>按照作业/进程到达先后顺序进行服务</td>
+<td>最短的作业/进程优先得到服务（所谓“最短”，是指要求服务时间最短）</td>
+<td>在每次调度时先计算各个<strong>作业/进程的响应比</strong>，选择<strong>响应比最高</strong>的作业/进程为其服务。<br />$\Large 响应比=\frac{等待时间+要求服务时间}{要求服务时间}&gt;=1$</td>
+</tr>
+<tr>
+<td>用于作业/进程调度</td>
+<td>用于<strong>作业调度</strong>时，考虑的是哪个作业先到达<strong>后备队列</strong>；用于<strong>进程调度</strong>时，考虑的是哪个进程先到达<strong>就绪队列</strong></td>
+<td>即可用于作业调度，也可用于进程调度。用于进程调度时称为“短进程优先（SPF, Shortest Process First）算法”</td>
+<td>即可用于作业调度，也可用于进程调度</td>
+</tr>
+<tr>
+<td>是否可抢占？</td>
+<td>非抢占式算法（只有进程主动放弃，才会进行下一个）</td>
+<td><strong>SJF</strong>和<strong>SPF</strong>是<strong>非抢占式的算法</strong>。但是<strong>也有抢占式的版本</strong>——<strong>最短剩余时间优先算法</strong>（SRTN, Shortest Remaining Time Next）</td>
+<td><strong>非抢占式的算法</strong>。因此只有当前运行的作业/进程主动放弃处理机时，才需要调度，才需要计算响应比</td>
+</tr>
+<tr>
+<td>优缺点</td>
+<td>优点：公平、算法简单<br />缺点：排在长作业（进程）后面的短作业需要等待很长时间，带权周转时间很大，对短作业来说用户体验很不好。对长时间有利，对短时间不利。</td>
+<td>优点：“最短的”平均等待时间、平均周转时间<br />缺点：不公平。<strong>对短作业有利，对长作业不利</strong>。可能产生<strong>饥饿现象</strong>。另外，作业/进程的运行时间是由用户提供的，并不一定真实，不一定能做到真正的短作业优先.</td>
+<td>综合考虑了等待时间和运行时间（要求服务时间）<br />等待时间相同时，要求服务时间短的优先（SJF 的优点）<br />要求服务时间相同时，等待时间长的优先（FCFS 的优点）<br />对于长作业来说，随着等待时间越来越久，其响应比也会<br />越来越大，从而避免了长作业饥饿的问题</td>
+</tr>
+<tr>
+<td>是否会导致饥饿</td>
+<td>不会</td>
+<td>会。如果源源不断地有短作业/进程到来，可能使长作业/进程长时间得不到服务，产生“饥饿”现象。如果一直得不到服务，则称为“<strong>饿死</strong>”</td>
+<td>不会，等待时间越久，相应比就会越大，被执行的几率越大。</td>
+</tr>
+</tbody></table>
+<p>PS：<strong>饥饿</strong>意思是某进程/作业长期得不到服务。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/" rel="tag"># 王道考研</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/21/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/" rel="prev" title="14.调度算法的评价标准">
+                  <i class="fa fa-chevron-left"></i> 14.调度算法的评价标准
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/09/21/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95-%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E3%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%E3%80%81%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97/" rel="next" title="16.调度算法---时间片轮转、优先级调度、多级反馈队列">
+                  16.调度算法---时间片轮转、优先级调度、多级反馈队列 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LHW</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+      
+
+
+
+
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
