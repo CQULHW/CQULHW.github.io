@@ -24,22 +24,19 @@
 
   <meta name="description" content="如题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="3.OS的发展与分类">
-<meta property="og:url" content="http://yoursite.com/2020/09/21/OS%E7%9A%84%E5%8F%91%E5%B1%95%E4%B8%8E%E5%88%86%E7%B1%BB/index.html">
+<meta property="og:title" content="4.操作系统的运行机制体系结构">
+<meta property="og:url" content="http://yoursite.com/2020/09/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="LHW&#39;s Blog">
 <meta property="og:description" content="如题">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_2_1.png">
-<meta property="og:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_2_2.png">
-<meta property="article:published_time" content="2020-09-21T01:18:51.000Z">
-<meta property="article:modified_time" content="2020-09-21T01:22:04.890Z">
+<meta property="article:published_time" content="2020-09-21T01:21:06.000Z">
+<meta property="article:modified_time" content="2020-09-21T01:21:57.014Z">
 <meta property="article:author" content="LHW">
 <meta property="article:tag" content="王道考研">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_2_1.png">
 
 
-<link rel="canonical" href="http://yoursite.com/2020/09/21/OS%E7%9A%84%E5%8F%91%E5%B1%95%E4%B8%8E%E5%88%86%E7%B1%BB/">
+<link rel="canonical" href="http://yoursite.com/2020/09/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">
 
 
 <script class="page-configurations">
@@ -52,7 +49,7 @@
   };
 </script>
 
-  <title>3.OS的发展与分类 | LHW's Blog</title>
+  <title>4.操作系统的运行机制体系结构 | LHW's Blog</title>
   
 
 
@@ -174,7 +171,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3-OS%E7%9A%84%E5%8F%91%E5%B1%95%E4%B8%8E%E5%88%86%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">3.OS的发展与分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%89%8B%E5%B7%A5%E6%93%8D%E4%BD%9C%E9%98%B6%E6%AE%B5"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1.手工操作阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8D%95%E9%81%93%E6%89%B9%E5%A4%84%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2.单道批处理系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%A4%9A%E9%81%93%E6%89%B9%E5%A4%84%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3.多道批处理系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4.分时操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">5.实时操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%95%A5"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">6.网络操作系统(略)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E5%88%86%E5%B8%83%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%95%A5"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">7.分布式操作系统(略)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%95%A5"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">8.个人计算机操作系统(略)</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">4.操作系统的运行机制体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1.运行机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2.操作系统内核</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3.操作系统的体系结构</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -236,7 +233,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/OS%E7%9A%84%E5%8F%91%E5%B1%95%E4%B8%8E%E5%88%86%E7%B1%BB/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -252,7 +249,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          3.OS的发展与分类
+          4.操作系统的运行机制体系结构
         </h1>
 
         <div class="post-meta">
@@ -263,7 +260,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-09-21 09:18:51 / 修改时间：09:22:04" itemprop="dateCreated datePublished" datetime="2020-09-21T09:18:51+08:00">2020-09-21</time>
+              <time title="创建时间：2020-09-21 09:21:06 / 修改时间：09:21:57" itemprop="dateCreated datePublished" datetime="2020-09-21T09:21:06+08:00">2020-09-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -285,57 +282,62 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="3-OS的发展与分类"><a href="#3-OS的发展与分类" class="headerlink" title="3.OS的发展与分类"></a>3.OS的发展与分类</h1><p>[TOC]</p>
-<h4 id="1-手工操作阶段"><a href="#1-手工操作阶段" class="headerlink" title="1.手工操作阶段"></a>1.手工操作阶段</h4><ul>
-<li>缺点：用户独占全机、人机速度矛盾导致资源利用率极低</li>
-</ul>
-<p>比如早年采用纸带打孔写程序输入电脑中，打孔很慢，计算器处理很快,，输出也是输出到纸带，也就是人机速度矛盾，整个过程其他用户不能使用该电脑，也就是独占全机.</p>
-<h4 id="2-单道批处理系统"><a href="#2-单道批处理系统" class="headerlink" title="2.单道批处理系统"></a>2.单道批处理系统</h4><ul>
-<li>引入<strong>脱机输入/输入技术</strong>(用磁带完成)，并<strong>监督程序</strong>负责控制程序的输入、输出</li>
-</ul>
-<p>还是用前面的纸带计算机，但是纸带采用外围机写入到速度更快的磁带，再插入计算机处理再将处理结果输出到磁带再显示到纸带.</p>
+        <h1 id="4-操作系统的运行机制体系结构"><a href="#4-操作系统的运行机制体系结构" class="headerlink" title="4.操作系统的运行机制体系结构"></a>4.操作系统的运行机制体系结构</h1><p>[TOC]</p>
+<h4 id="1-运行机制"><a href="#1-运行机制" class="headerlink" title="1.运行机制"></a>1.运行机制</h4><ul>
+<li><p>两种指令</p>
 <ul>
-<li><p>优点：缓解了一定程度的人机速度矛盾，资源利用率有所提升.</p>
-</li>
-<li><p>缺点：<strong>内存之中仅有一道程序运行</strong>，只有该程序运行结束后才能调入下一道程序.<strong>CPU有大量的时间是在空闲等待I/O完成</strong>.资源利用率依然很低</p>
-<img src="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_2_1.png" alt="image-20200814202142290" style="zoom:50%;" />
-
-</li>
+<li>特权指令：如内存清零指令，不允许用户程序使用</li>
+<li>非特权指令：如普通运算指令</li>
 </ul>
-<h4 id="3-多道批处理系统"><a href="#3-多道批处理系统" class="headerlink" title="3.多道批处理系统"></a>3.多道批处理系统</h4><p>在单道的基础上，计算机一次从磁带中读出多道程序，程序并发执行，这时操作系统才算正式诞生，并引入了中断技术</p>
+</li>
+<li><p>两种处理器状态</p>
 <ul>
-<li><p>优点：多道程序<strong>并发</strong>执行，<strong>共享</strong>计算机资源.<strong>资源利用率大幅提升</strong>，CPU和其他资源保持”忙碌”状态，系统吞吐量增大.</p>
+<li><p>状态划分标准：用程序状态字寄存器(PSW)中的某标志位来标识当前处理器处于什么状态。如0为用户态，1为核心态。</p>
 </li>
-<li><p>缺点：用户响应时间过长，<strong>没有人机交互功能(用户提交自己的作业后只能等待计算机处理完成，中间不能控制自己的作业执行)</strong></p>
-<img src="https://lhwimages.oss-cn-chengdu.aliyuncs.com/OS_2_2.png" alt="image-20200814202206256" style="zoom:50%;" />
-
+<li><p>核心态(目态)：此时CPU只能执行非特权指令</p>
+</li>
+<li><p>用户态(管态)：特权指令和非特权指令都可以执行</p>
 </li>
 </ul>
-<h4 id="4-分时操作系统"><a href="#4-分时操作系统" class="headerlink" title="4.分时操作系统"></a>4.分时操作系统</h4><ul>
-<li>定义：计算机以<strong>时间片</strong>为单位<strong>轮流为各个用户/作业服务</strong>，各个用户可通过终端与计算机进行交互.</li>
-<li>主要优点：用户请求可以被及时响应，<strong>解决了人机交互问题</strong>.允许多个用户同时使用一台计算机，并且用户对计算机的操作相互独立，感受不到别人的存在.</li>
-<li>缺点：<strong>对每个用户十分公平，以至于不能优先处理一些紧急问题</strong>.操作系统对各个用户/作业都是完全公平的，循环地为每个用户/作业服务一个时间片，不区分任务的紧急性.</li>
-</ul>
-<h4 id="5-实时操作系统"><a href="#5-实时操作系统" class="headerlink" title="5.实时操作系统"></a>5.实时操作系统</h4><ul>
-<li>优点：可以优先响应一些紧急任务，某些紧急任务不需要时间片排队</li>
-</ul>
-<p>在实时操作系统的控制下，计算机系统接收到外部信号后及时进行处理，并且<strong>要在严格的时限内处理完事件</strong>.实时操作系统的主要特点是<strong>及时性和可靠性</strong>.</p>
+</li>
+<li><p>两种程序</p>
 <ul>
-<li>分类<ul>
-<li>硬实时系统：必须在绝对严格的规定时间内完成处理，如：导弹控制系统、自动驾驶系统</li>
-<li>软实时系统：能偶尔违反时间规定，如：12306火车订票系统</li>
+<li>内核程序：操作系统的内核程序是系统的管理者，既可以执行特权指令，也可以执行非特权指令，运行在核心态。</li>
+<li>应用程序：为了保证系统能安全运行，普通应用程序只能执行非特权指令，运行在用户态。</li>
 </ul>
 </li>
 </ul>
-<h4 id="6-网络操作系统-略"><a href="#6-网络操作系统-略" class="headerlink" title="6.网络操作系统(略)"></a>6.网络操作系统(略)</h4><ul>
-<li>是伴随着计算机网络的发展而诞生的，能把网络中各个计算机有机地结合起来，实现数据传送等功能，<strong>实现网络中各种资源的共享（如文件共享）和各台计算机之间的通信</strong>。（如：Windows NT 就是一种典型的网络操作系统，网站服务器就可以使用）</li>
+<h4 id="2-操作系统内核"><a href="#2-操作系统内核" class="headerlink" title="2.操作系统内核"></a>2.操作系统内核</h4><p><strong>内核</strong>是计算机上配置的底层<strong>软件</strong>，是操作系统最基本、最核心的部分。</p>
+<p>实现操作系统内核功能的哪些程序就是<strong>内核程序</strong>。</p>
+<ul>
+<li>时钟管理：实现计时功能，所有的始终切换进程调度都需要依赖它</li>
+<li>中断处理</li>
+<li>原语：一种特殊的程序，最接近硬件的部分，这种程序的运行具有原子性(要么不执行，要么一口气全部执行完)。</li>
+<li>对系统资源进行管理的功能<ul>
+<li>进程管理</li>
+<li>存储器管理</li>
+<li>设备管理</li>
 </ul>
-<h4 id="7-分布式操作系统-略"><a href="#7-分布式操作系统-略" class="headerlink" title="7.分布式操作系统(略)"></a>7.分布式操作系统(略)</h4><ul>
-<li>主要特点是<strong>分布性和并行性</strong>。系统中的各台计算机地位相同，<strong>任何工作都可以分布在这些计算机上，由它们并行、协同完成这个任务</strong>.</li>
+</li>
 </ul>
-<h4 id="8-个人计算机操作系统-略"><a href="#8-个人计算机操作系统-略" class="headerlink" title="8.个人计算机操作系统(略)"></a>8.个人计算机操作系统(略)</h4><ul>
-<li>如 Windows XP、MacOS，方便个人使用.</li>
+<h4 id="3-操作系统的体系结构"><a href="#3-操作系统的体系结构" class="headerlink" title="3.操作系统的体系结构"></a>3.操作系统的体系结构</h4><ul>
+<li>大内核：包含对系统资源进行管理的功能<ul>
+<li>优点：高性能</li>
+<li>缺点：内核代码庞大，结构混乱，难以维护</li>
 </ul>
+</li>
+<li>微内核：不包含对系统资源进行管理的功能，只保留最基本的功能<ul>
+<li>优点：内核功能少，结构清晰，方便维护</li>
+<li>缺点：需要频繁地在核心态和用户态之间切换，性能低</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>类比于企业</p>
+<p><strong>内核</strong>就是企业的管理层，负责一些重要的工作。只有管理层才能执行<strong>特权指令</strong>，普通员工只能执行<strong>非特权指令</strong>。<strong>用户态</strong>，<strong>核心态</strong>之间的切换相当于普通员工和管理层之间的<strong>工作交接</strong></p>
+<p>大内核：如才开始上道的企业，管理层负责绝大部分事情，优点是效率高，缺点是组织结构混乱，难以维护</p>
+<p>微内核：公司体量很大，管理层只负责核心工作，优点是组织结构清晰、方便维护，缺点是效率低</p>
+</blockquote>
 
     </div>
 
@@ -352,14 +354,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/09/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9B%9B%E4%B8%AA%E7%89%B9%E5%BE%81/" rel="prev" title="2.操作系统的四个特征">
-                  <i class="fa fa-chevron-left"></i> 2.操作系统的四个特征
+                <a href="/2020/09/21/OS%E7%9A%84%E5%8F%91%E5%B1%95%E4%B8%8E%E5%88%86%E7%B1%BB/" rel="prev" title="3.OS的发展与分类">
+                  <i class="fa fa-chevron-left"></i> 3.OS的发展与分类
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/09/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" rel="next" title="4.操作系统的运行机制体系结构">
-                  4.操作系统的运行机制体系结构 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
