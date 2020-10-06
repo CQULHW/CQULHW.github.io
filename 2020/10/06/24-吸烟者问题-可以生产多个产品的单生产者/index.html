@@ -24,19 +24,22 @@
 
   <meta name="description" content="如题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="14.调度算法的评价标准">
-<meta property="og:url" content="http://yoursite.com/2020/09/21/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/index.html">
+<meta property="og:title" content="24.吸烟者问题----可以生产多个产品的单生产者">
+<meta property="og:url" content="http://yoursite.com/2020/10/06/24-%E5%90%B8%E7%83%9F%E8%80%85%E9%97%AE%E9%A2%98-%E5%8F%AF%E4%BB%A5%E7%94%9F%E4%BA%A7%E5%A4%9A%E4%B8%AA%E4%BA%A7%E5%93%81%E7%9A%84%E5%8D%95%E7%94%9F%E4%BA%A7%E8%80%85/index.html">
 <meta property="og:site_name" content="LHW&#39;s Blog">
 <meta property="og:description" content="如题">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-21T01:38:23.000Z">
-<meta property="article:modified_time" content="2020-09-21T01:38:52.751Z">
+<meta property="og:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/image-20201006201248094.png">
+<meta property="og:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/24_2.png">
+<meta property="article:published_time" content="2020-10-06T12:43:54.000Z">
+<meta property="article:modified_time" content="2020-10-06T12:44:36.769Z">
 <meta property="article:author" content="LHW">
 <meta property="article:tag" content="王道考研">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhwimages.oss-cn-chengdu.aliyuncs.com/image-20201006201248094.png">
 
 
-<link rel="canonical" href="http://yoursite.com/2020/09/21/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/">
+<link rel="canonical" href="http://yoursite.com/2020/10/06/24-%E5%90%B8%E7%83%9F%E8%80%85%E9%97%AE%E9%A2%98-%E5%8F%AF%E4%BB%A5%E7%94%9F%E4%BA%A7%E5%A4%9A%E4%B8%AA%E4%BA%A7%E5%93%81%E7%9A%84%E5%8D%95%E7%94%9F%E4%BA%A7%E8%80%85/">
 
 
 <script class="page-configurations">
@@ -49,7 +52,7 @@
   };
 </script>
 
-  <title>14.调度算法的评价标准 | LHW's Blog</title>
+  <title>24.吸烟者问题----可以生产多个产品的单生产者 | LHW's Blog</title>
   
 
 
@@ -171,7 +174,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#14-%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86"><span class="nav-number">1.</span> <span class="nav-text">14.调度算法的评价标准</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-CPU%E5%88%A9%E7%94%A8%E7%8E%87"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1.CPU利用率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%B3%BB%E7%BB%9F%E5%90%9E%E5%90%90%E9%87%8F"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2.系统吞吐量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%91%A8%E8%BD%AC%E6%97%B6%E9%97%B4"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3.周转时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E7%AD%89%E5%BE%85%E6%97%B6%E9%97%B4"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4.等待时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">5.响应时间</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#24-%E5%90%B8%E7%83%9F%E8%80%85%E9%97%AE%E9%A2%98%E2%80%94-%E5%8F%AF%E4%BB%A5%E7%94%9F%E4%BA%A7%E5%A4%9A%E4%B8%AA%E4%BA%A7%E5%93%81%E7%9A%84%E5%8D%95%E7%94%9F%E4%BA%A7%E8%80%85"><span class="nav-number">1.</span> <span class="nav-text">24.吸烟者问题—-可以生产多个产品的单生产者</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -233,7 +236,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/06/24-%E5%90%B8%E7%83%9F%E8%80%85%E9%97%AE%E9%A2%98-%E5%8F%AF%E4%BB%A5%E7%94%9F%E4%BA%A7%E5%A4%9A%E4%B8%AA%E4%BA%A7%E5%93%81%E7%9A%84%E5%8D%95%E7%94%9F%E4%BA%A7%E8%80%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -249,7 +252,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          14.调度算法的评价标准
+          24.吸烟者问题----可以生产多个产品的单生产者
         </h1>
 
         <div class="post-meta">
@@ -260,7 +263,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-09-21 09:38:23 / 修改时间：09:38:52" itemprop="dateCreated datePublished" datetime="2020-09-21T09:38:23+08:00">2020-09-21</time>
+              <time title="创建时间：2020-10-06 20:43:54 / 修改时间：20:44:36" itemprop="dateCreated datePublished" datetime="2020-10-06T20:43:54+08:00">2020-10-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -282,27 +285,57 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="14-调度算法的评价标准"><a href="#14-调度算法的评价标准" class="headerlink" title="14.调度算法的评价标准"></a>14.调度算法的评价标准</h1><h4 id="1-CPU利用率"><a href="#1-CPU利用率" class="headerlink" title="1.CPU利用率"></a>1.CPU利用率</h4><ul>
-<li>定义：CPU”忙碌“的时间占总时间的比例</li>
-</ul>
-<h4 id="2-系统吞吐量"><a href="#2-系统吞吐量" class="headerlink" title="2.系统吞吐量"></a>2.系统吞吐量</h4><ul>
-<li>定义：单位时间完成作业的数量</li>
-</ul>
-<h4 id="3-周转时间"><a href="#3-周转时间" class="headerlink" title="3.周转时间"></a>3.周转时间</h4><ul>
-<li>定义：指从<strong>作业被提交给系统开始</strong>，到<strong>作业完成为止</strong>的这段时间间隔</li>
-<li>平均周转时间：$\Large \frac{各作业周转时间之和}{作业数}$</li>
-<li>带权周转时间：$\Large \frac{作业周转时间}{作业实际运行时间}=\frac{作业完成时间-作业提交时间}{作业实际运行时间}$</li>
-<li>平均带权周转时间：$\Large \frac{各作业带权周转时间之和}{作业数}$</li>
-</ul>
-<h4 id="4-等待时间"><a href="#4-等待时间" class="headerlink" title="4.等待时间"></a>4.等待时间</h4><ul>
-<li>指<strong>进程/作业处于等待处理状态时间之和</strong>，等待时间越长，用户满意度越低。</li>
-<li><strong>注意</strong>：<ul>
-<li>对于<strong>进程</strong>来说，等待时间就是指<strong>进程建立后等待被服务的时间之和</strong>，<strong>在等待I/O完成的期间其实进程也是在被服务的，所以不计入等待时间。</strong></li>
-<li>对于<strong>作业</strong>来说，不仅<strong>要考虑建立进程后的等待时间，还要加上作业在外存后备队列中等待的时间。</strong></li>
+        <h1 id="24-吸烟者问题—-可以生产多个产品的单生产者"><a href="#24-吸烟者问题—-可以生产多个产品的单生产者" class="headerlink" title="24.吸烟者问题—-可以生产多个产品的单生产者"></a>24.吸烟者问题—-可以生产多个产品的单生产者</h1><img src="https://lhwimages.oss-cn-chengdu.aliyuncs.com/image-20201006201248094.png" alt="image-20201006201248094" style="zoom:67%;" />
+
+<p>然而生产者可能出现生产三种不同的产品</p>
+<hr>
+<p>题目分析：</p>
+<ol>
+<li><p>分析<strong>同步</strong>、<strong>互斥</strong>关系</p>
+<ul>
+<li><p>互斥关系：</p>
+<p>首先是把桌子看成一个缓冲区，<strong>缓冲区只能放一种组合</strong>，要互斥访问</p>
+<p>组合有以下几种：</p>
+<blockquote>
+<p>组合一：纸、胶水</p>
+<p>组合二：烟草、胶水</p>
+<p>组合三：烟草、纸</p>
+</blockquote>
+</li>
+<li><p>同步关系</p>
+<ul>
+<li>桌上有组合一 =》吸烟者1取走东西</li>
+<li>桌上有组合二 =》吸烟者2取走东西</li>
+<li>桌上有组合三 =》吸烟者3取走东西</li>
+<li>确认完成吸烟 =》生产者放下一个组合</li>
 </ul>
 </li>
 </ul>
-<h4 id="5-响应时间"><a href="#5-响应时间" class="headerlink" title="5.响应时间"></a>5.响应时间</h4>
+</li>
+<li><p>分析PV操作顺序</p>
+<p><strong>必须在桌上放了东西后执行V操作、在拿走东西后执行P操作</strong></p>
+</li>
+<li><p>设置信号量实现同步互斥</p>
+<p>因为桌子本身只允许一种组合，所以实际上是不需要进行设置单独的信号量实现互斥。只需要设置信号量实现同步即可。</p>
+<p><img src="https://lhwimages.oss-cn-chengdu.aliyuncs.com/24_2.png" alt="image-20201006203152699"></p>
+</li>
+<li><p>代码实现</p>
+</li>
+</ol>
+<p>设置的信号量</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">semaphore offer1=<span class="number">0</span>;</span><br><span class="line">semaphore offer2=<span class="number">0</span>;</span><br><span class="line">semaphore offer3=<span class="number">0</span>;</span><br><span class="line">semaphore finish=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> i=<span class="number">0</span>;<span class="comment">//用于三个吸烟者实现轮流吸烟</span></span><br></pre></td></tr></table></figure>
+
+<p>生产者：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">provider()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">1</span>)&#123;</span><br><span class="line">            将组合一放在桌上;</span><br><span class="line">            V(offer1);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(i==<span class="number">2</span>)&#123;</span><br><span class="line">            将组合二放在桌上;</span><br><span class="line">            V(offer2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(i==<span class="number">3</span>)&#123;</span><br><span class="line">            将组合三放在桌上;</span><br><span class="line">            V(offer3)</span><br><span class="line">        &#125;</span><br><span class="line">            </span><br><span class="line">        i=(i+<span class="number">1</span>)%<span class="number">3</span>;</span><br><span class="line">        P(finish);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>吸烟者：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">smoker1()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        P(offer1);</span><br><span class="line">        拿走组合一;</span><br><span class="line">        卷烟;</span><br><span class="line">        抽掉;</span><br><span class="line">        V(finish);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">smoker2()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        P(offer2);</span><br><span class="line">        拿走组合二;</span><br><span class="line">        卷烟;</span><br><span class="line">        抽掉;</span><br><span class="line">        V(finish);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">smoker3()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        P(offer3);</span><br><span class="line">        拿走组合三;</span><br><span class="line">        卷烟;</span><br><span class="line">        抽掉;</span><br><span class="line">        V(finish);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
     </div>
 
     
@@ -318,14 +351,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/09/21/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%9A%84%E6%97%B6%E6%9C%BA%EF%BC%8C%E5%88%87%E6%8D%A2%E4%B8%8E%E8%BF%87%E7%A8%8B%EF%BC%8C%E8%B0%83%E5%BA%A6%E6%96%B9%E5%BC%8F/" rel="prev" title="13.进程调度的时机，切换与过程，调度方式">
-                  <i class="fa fa-chevron-left"></i> 13.进程调度的时机，切换与过程，调度方式
+                <a href="/2020/09/21/%E5%A4%9A%E7%94%9F%E4%BA%A7%E8%80%85-%E5%A4%9A%E6%B6%88%E8%B4%B9%E8%80%85/" rel="prev" title="23.多生产者-多消费者">
+                  <i class="fa fa-chevron-left"></i> 23.多生产者-多消费者
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/09/21/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" rel="next" title="15.调度算法">
-                  15.调度算法 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
